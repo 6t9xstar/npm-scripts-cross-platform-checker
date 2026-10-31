@@ -1,0 +1,41 @@
+name: 'ScriptPort'
+description: 'Find npm scripts that break on Windows, Linux or macOS.'
+author: '6t9xstar'
+branding:
+  icon: 'terminal'
+  color: 'blue'
+inputs:
+  path:
+    description: "package.json file or folder to scan"
+    required: false
+    default: "."
+  recursive:
+    description: "Scan every package.json below path (monorepos)"
+    required: false
+    default: "false"
+  fail-on:
+    description: "Lowest severity that fails the step: error, warning, info or none"
+    required: false
+    default: "error"
+  args:
+    description: "Extra command-line arguments"
+    required: false
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Run ScriptPort
+      shell: bash
+      env:
+        INPUT_PATH: ${{ inputs.path }}
+        INPUT_RECURSIVE: ${{ inputs.recursive }}
+        INPUT_FAIL_ON: ${{ inputs.fail-on }}
+        INPUT_ARGS: ${{ inputs.args }}
+      run: |
+        set -euo pipefail
+        ARGS=(scan "$INPUT_PATH")
+        if [ "$INPUT_RECURSIVE" = "true" ]; then ARGS+=(--recursive); fi
+        read -r -a EXTRA <<< "$INPUT_ARGS"
+        CLI="$GITHUB_ACTION_PATH/bin/scriptport.js"
+        node "$CLI" "${ARGS[@]}" ${EXTRA[@]+"${EXTRA[@]}"} --format markdown --fail-on none >> "$GITHUB_STEP_SUMMARY" || true
+        node "$CLI" "${ARGS[@]}" ${EXTRA[@]+"${EXTRA[@]}"} --format github --fail-on "$INPUT_FAIL_ON"

@@ -1,0 +1,12 @@
+{
+  "name": "clean-scripts-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "clean": "rimraf dist",
+    "lint": "eslint \"src/**/*.js\"",
+    "test": "node --test",
+    "check": "npm run lint && npm test"
+  },
+  "devDependencies": { "cross-env": "^7.0.3", "rimraf": "^6.0.1" }
+}

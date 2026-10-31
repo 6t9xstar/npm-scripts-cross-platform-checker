@@ -1,0 +1,48 @@
+{
+  "name": "scriptport",
+  "version": "1.0.0",
+  "description": "Cross-platform npm scripts checker. Finds package.json scripts that break on Windows, Linux or macOS and fixes them with cross-env, rimraf and shx.",
+  "type": "module",
+  "bin": {
+    "scriptport": "bin/scriptport.js"
+  },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "action.yml"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "test": "node --test",
+    "lint:scripts": "node bin/scriptport.js scan"
+  },
+  "keywords": [
+    "npm scripts",
+    "package.json",
+    "cross-platform",
+    "windows",
+    "cross-env",
+    "rimraf",
+    "shx",
+    "linter",
+    "cli",
+    "github-action",
+    "npm scripts not working on windows",
+    "package-json-linter"
+  ],
+  "author": "6t9xstar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/6t9xstar/npm-scripts-cross-platform-checker.git"
+  },
+  "homepage": "https://github.com/6t9xstar/npm-scripts-cross-platform-checker#readme",
+  "bugs": {
+    "url": "https://github.com/6t9xstar/npm-scripts-cross-platform-checker/issues"
+  }
+}
