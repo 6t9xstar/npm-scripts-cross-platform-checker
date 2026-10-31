@@ -56,7 +56,12 @@ The full example lives in [`fixtures/broken/package.json`](fixtures/broken/packa
 
 ## Install
 
-ScriptPort runs straight from GitHub. You need Node.js 18.17+ and git.
+**Requirements**
+
+- Node.js 18.17 or newer
+- git (to install straight from GitHub)
+- Windows, macOS or Linux
+- No runtime dependencies.
 
 ```bash
 # run once without installing
